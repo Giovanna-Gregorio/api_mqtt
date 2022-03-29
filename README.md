@@ -1,8 +1,7 @@
 # api_mqtt
 
-Any Caroline Cunha Fernandes
+- Any Caroline Cunha Fernandes
+- Giovanna Gregório Guimarães
 
-Giovanna Gregório Guimarães
-
-Desenvolvimento de Sistemas Distribuídos
-BSI - 2022
+- Desenvolvimento de Sistemas Distribuídos
+- BSI - 2022
