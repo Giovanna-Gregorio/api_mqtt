@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MQTT</title>
+    </head>
+
+    <body> 
+	<div class="divPrincipal">
+        	<h2>Long Polling</h2>
+
+        	<p>Requisição AJAX</p>
+
+        	<button class="buttonMensagem" type="button" onclick="loadDoc()">Mensagem</button>
+
+		<p id="demo"></p>
+	</div>
+    </body>
+</html>
+
+<script>
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://localhost:44436/api/v1/mensagem/historico", false);
+        xhttp.send();
+        document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+</script>
+
+<style>
+    .divPrincipal {
+	text-align: center;
+    }
+
+    .buttonMensagem {
+       border-radius: 8px;
+       border: 2px solid #4CAF50; 
+       transition-duration: 0.4s;
+    }
+
+    .buttonMensagem:hover {
+       background-color: #4CAF50;
+       color: white;
+    }
+</style>
