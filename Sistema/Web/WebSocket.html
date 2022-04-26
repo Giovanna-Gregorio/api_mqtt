@@ -1,18 +1,58 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>MQTT</title>
-    </head>
+<head>
+    <title>MQTT</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+    <script>
+        function requisicaoWebSocket() {
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("http://localhost:44436/myHub")
+                .build();
+
+            var mensagem = [];
+            connection.start().then(() => {
+                connection.on("post", (e) => {
+                    mensagem.push(e);
+
+                    var messageList = document.getElementById("conteudo").innerHTML;
+                    messageList = "";
+
+                    for (const mes of mensagem) {
+                        messageList += "<li>" + mes.mensagem + "</li>";
+                    }
+
+                    document.getElementById("conteudo").innerHTML = messageList;
+                });
+            });
+        }
+    </script>
+</head>
 
     <body>
         <div class="divPrincipal">
-        	<h2>Web Socket</h2>
-	</div>
+            <h2>Web Socket</h2>
+
+            <button class="buttonMensagem" type="button" onclick="requisicaoWebSocket()">Mensagem</button>
+
+            <p id="conteudo"></p>
+        </div>
     </body>
 </html>
 
 <style>
     .divPrincipal {
-	text-align: center;
+        text-align: center;
+    }
+
+    .buttonMensagem {
+        border-radius: 8px;
+        border: 2px solid #4CAF50;
+        transition-duration: 0.4s;
+    }
+
+    .buttonMensagem:hover {
+        background-color: #4CAF50;
+        color: white;
     }
 </style>
